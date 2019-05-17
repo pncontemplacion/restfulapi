@@ -24,7 +24,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'verified', 'verification_token', 'admin',
+        'name',
+        'email',
+        'password',
+        'verified',
+        'verification_token',
+        'admin',
     ];
 
     /**
@@ -36,7 +41,7 @@ class User extends Authenticatable
         'password', 'remember_token', 'verification_token',
     ];
 
-    /**
+     /**
      * The attributes that should be cast to native types.
      *
      * @var array
@@ -60,4 +65,15 @@ class User extends Authenticatable
         return str_random(40);
     }
 
+    public function setNameAttribute($name) {
+        $this->attributes['name'] = strtolower($name);
+    }
+
+    public function getNameAttribute($name) {
+        return ucwords($name);
+    }
+
+    public function setEmailAttribute($email) {
+        $this->attributes['email'] = strtolower($email);
+    }
 }
